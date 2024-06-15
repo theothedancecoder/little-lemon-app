@@ -1,0 +1,52 @@
+#hero {
+  display: block;
+  width: 418px;
+  height: 459px;
+  border-radius: 16px;
+  margin-top: 60px;
+  z-index: 10;
+  position: absolute;
+  right: 150px;
+  bottom: -180px;
+}
+
+.hero-container {
+  display: flex;
+  justify-content: space-between;
+  background-color: #495e57;
+  position: relative;
+  padding: 20px;
+  overflow: visible;
+}
+
+.left-hero {
+  flex: 1;
+  padding: 20px;
+  max-width: 50%;
+}
+
+.left-hero p {
+  font-size: 24px;
+  color: #fff;
+  margin-left: 25px;
+  text-align: left;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+.left-hero h1 {
+  color: #face14;
+  font-size: 48px;
+  margin-left: 25px;
+}
+
+.left-hero h2 {
+  color: #fff;
+  font-size: 30px;
+  margin-left: 25px;
+}
+
+.right-hero {
+  position: relative;
+  flex-shrink: 0;
+}
