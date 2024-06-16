@@ -3,11 +3,11 @@
   width: 418px;
   height: 459px;
   border-radius: 16px;
-  margin-top: 60px;
+  margin-top: 40px;
   z-index: 10;
   position: absolute;
   right: 150px;
-  bottom: -180px;
+  bottom: -120px;
 }
 
 .hero-container {
@@ -49,4 +49,8 @@
 .right-hero {
   position: relative;
   flex-shrink: 0;
+}
+
+.right-hero img {
+  margin-top: 60px;
 }
