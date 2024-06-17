@@ -1,0 +1,18 @@
+.chef-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../Assets/restaurant\ chef\ B.jpg");
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+  font-size: 24px;
+  font-family: Arial, sans-serif;
+}
+
+.chef-text {
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+}

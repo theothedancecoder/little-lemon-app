@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import "./BookingForm.css";
 
-const BookingForm = ({ availableTimes, updateTimes, onSubmit }) => {
+const BookingForm = ({ availableTimes, submitForm }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -20,66 +21,75 @@ const BookingForm = ({ availableTimes, updateTimes, onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      onSubmit(formData);
+      console.log("on validate click");
+      submitForm(formData);
     }
   };
 
   const validateForm = () => {
-    // Validation logic
-    // Example validation rules for demonstration purposes
-    return true; // Replace with actual validation logic
+    return true;
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <label>Name:</label>
+      <div className="formToFill">
+        <label htmlFor="nameInput">Name:</label>
         <input
           type="text"
+          id="nameInput"
           name="name"
           value={formData.name}
           onChange={handleChange}
-          required // HTML5 required attribute
+          required
+          aria-labelledby="nameLabel"
         />
       </div>
-      <div>
-        <label>Email:</label>
+      <div className="formToFill">
+        <label htmlFor="emailInput">Email:</label>
         <input
           type="email"
+          id="emailInput"
           name="email"
           value={formData.email}
           onChange={handleChange}
-          required // HTML5 required attribute
+          required
+          aria-labelledby="emailLabel"
         />
       </div>
-      <div>
-        <label>Party Size:</label>
+      <div className="formToFill">
+        <label htmlFor="partySizeInput">Party Size:</label>
         <input
           type="number"
+          id="partySizeInput"
           name="partySize"
           value={formData.partySize}
           onChange={handleChange}
-          required // HTML5 required attribute
-          min="1" // Minimum party size
+          required
+          min="1"
+          aria-labelledby="partySizeLabel"
         />
       </div>
-      <div>
-        <label>Date:</label>
+      <div className="formToFill">
+        <label htmlFor="dateInput">Date:</label>
         <input
           type="date"
+          id="dateInput"
           name="selectedDate"
           value={formData.selectedDate}
           onChange={handleChange}
-          required // HTML5 required attribute
+          required
+          aria-labelledby="dateLabel"
         />
       </div>
-      <div>
-        <label>Time:</label>
+      <div className="formToFill">
+        <label htmlFor="timeSelect">Time:</label>
         <select
+          id="timeSelect"
           name="selectedTime"
           value={formData.selectedTime}
           onChange={handleChange}
-          required // HTML5 required attribute
+          required
+          aria-labelledby="timeLabel"
         >
           <option value="">Select Time</option>
           {availableTimes.map((time) => (

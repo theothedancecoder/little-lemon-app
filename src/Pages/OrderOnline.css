@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: space-between;
   margin-right: 110px;
-  margin-left: 10px;
+
   margin-top: 80px;
   padding: 60px;
 }
@@ -15,4 +15,8 @@ button {
   width: 231px;
   height: 69px;
   font-size: 20px;
+}
+
+.order h1 {
+  margin-left: 60px;
 }

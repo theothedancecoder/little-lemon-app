@@ -7,31 +7,29 @@ const Nav = () => {
   return (
     <div className="container">
       <div className="left-side">
-        <img id="logo" src={Logo} alt="little-lemon logo"></img>{" "}
+        <img id="logo" src={Logo} alt="little-lemon logo" />
       </div>
       <div className="right-side">
-        <Link>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>{" "}
-            </li>
-            <li>
-              <Link to="About">About</Link>
-            </li>
-            <li>
-              <Link to="Menu">Menu</Link>
-            </li>
-            <li>
-              <Link to="Reservations">Reservations</Link>
-            </li>
-            <li>
-              <Link to="OrderOnline">Order Online</Link>
-            </li>
-            <li>
-              <Link to="Login">Login</Link>
-            </li>
-          </ul>
-        </Link>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+          <li>
+            <Link to="/menu">Menu</Link>
+          </li>
+          <li>
+            <Link to="/reservations">Reservations</Link>
+          </li>
+          <li>
+            <Link to="/order-online">Order Online</Link>
+          </li>
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+        </ul>
       </div>
     </div>
   );

@@ -1,15 +1,14 @@
 import React from "react";
-import Nav from "../Components/Nav";
-import Header from "../Components/Header";
-import About from "./About";
-import Menu from "./Menu";
+import chefImage from "../Assets/restaurant chef B.jpg";
+import "./Home.css"; // Ensure the CSS file is correctly imported
 
 const Home = () => {
   return (
-    <div>
-      <Nav />
-      <About />
-      <Menu />
+    <div className="chef-container">
+      <div className="chef-text">
+        <h1>Welcome to Our Restaurant</h1>
+        <p>Experience the finest Mediterranean cuisine in Chicago.</p>
+      </div>
     </div>
   );
 };

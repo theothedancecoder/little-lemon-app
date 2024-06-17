@@ -1,49 +1,65 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
-import BookingForm from "../Components/BookingForm"; // Adjust the import path as needed
+import BookingForm from "../Components/BookingForm";
 
 // Mock availableTimes
 const mockAvailableTimes = ["10:00 AM", "12:00 PM", "2:00 PM"];
 
 describe("BookingForm", () => {
   test("renders all form fields correctly", () => {
-    const { getByLabelText, getByText } = render(
+    const { getByLabelText } = render(
       <BookingForm availableTimes={mockAvailableTimes} />
     );
 
-    // Test rendering of form fields
-    expect(getByLabelText(/Name/i)).toBeInTheDocument();
-    expect(getByLabelText(/Email/i)).toBeInTheDocument();
-    expect(getByLabelText(/Party Size/i)).toBeInTheDocument();
-    expect(getByLabelText(/Date/i)).toBeInTheDocument();
-    expect(getByLabelText(/Time/i)).toBeInTheDocument();
-
-    // You can add more specific tests here as needed
+    expect(getByLabelText(/Name:/i)).toBeInTheDocument();
+    expect(getByLabelText(/Email:/i)).toBeInTheDocument();
+    expect(getByLabelText(/Party Size:/i)).toBeInTheDocument();
+    expect(getByLabelText(/Date:/i)).toBeInTheDocument();
+    expect(getByLabelText(/Time:/i)).toBeInTheDocument();
   });
 
   test("form submission with valid data", () => {
+    const mockSubmit = jest.fn();
     const { getByLabelText, getByText } = render(
-      <BookingForm availableTimes={mockAvailableTimes} />
+      <BookingForm availableTimes={mockAvailableTimes} onSubmit={mockSubmit} />
     );
 
-    // Fill out the form
-    fireEvent.change(getByLabelText(/Name/i), {
+    fireEvent.change(getByLabelText(/Name:/i), {
       target: { value: "John Doe" },
     });
-    fireEvent.change(getByLabelText(/Email/i), {
+    fireEvent.change(getByLabelText(/Email:/i), {
       target: { value: "john.doe@example.com" },
     });
-    fireEvent.change(getByLabelText(/Party Size/i), { target: { value: "4" } });
-    fireEvent.change(getByLabelText(/Date/i), {
+    fireEvent.change(getByLabelText(/Party Size:/i), {
+      target: { value: "4" },
+    });
+    fireEvent.change(getByLabelText(/Date:/i), {
       target: { value: "2024-06-18" },
     });
-    fireEvent.change(getByLabelText(/Time/i), {
+    fireEvent.change(getByLabelText(/Time:/i), {
       target: { value: "12:00 PM" },
     });
 
-    // Submit the form
-    fireEvent.click(getByText(/Submit/i)); // Adjust the text as per your Submit button label
+    fireEvent.click(getByText(/Submit/i));
 
-    // Add assertions here based on your form submission behavior
+    expect(mockSubmit).toHaveBeenCalledTimes(1);
+    expect(mockSubmit).toHaveBeenCalledWith({
+      name: "John Doe",
+      email: "john.doe@example.com",
+      partySize: "4",
+      selectedDate: "2024-06-18",
+      selectedTime: "12:00 PM",
+    });
+  });
+
+  test("form submission with invalid data", () => {
+    const mockSubmit = jest.fn();
+    const { getByText } = render(
+      <BookingForm availableTimes={mockAvailableTimes} onSubmit={mockSubmit} />
+    );
+
+    fireEvent.click(getByText(/Submit/i));
+
+    expect(mockSubmit).not.toHaveBeenCalled();
   });
 });
