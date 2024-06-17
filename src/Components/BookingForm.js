@@ -1,81 +1,96 @@
 import React, { useState } from "react";
 
-const BookingForm = ({ availableTimes, updateTimes, submitForm }) => {
+const BookingForm = ({ availableTimes, updateTimes, onSubmit }) => {
   const [formData, setFormData] = useState({
-    date: "",
-    time: "",
-    guests: "",
-    occasion: "Birthday",
+    name: "",
+    email: "",
+    partySize: "",
+    selectedDate: "",
+    selectedTime: "",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-    if (name === "date") {
-      updateTimes(value); // Update available times based on selected date
-    }
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    submitForm(formData); // Call the submitForm function passed via props
-    console.log("Form data submitted", formData);
+    if (validateForm()) {
+      onSubmit(formData);
+    }
+  };
+
+  const validateForm = () => {
+    // Validation logic
+    // Example validation rules for demonstration purposes
+    return true; // Replace with actual validation logic
   };
 
   return (
-    <section className="form-container">
-      <form className="booking-form" onSubmit={handleSubmit}>
-        <fieldset>
-          <legend>Reservation Form</legend>
-          <label htmlFor="res-date">Choose Date</label>
-          <input
-            type="date"
-            id="res-date"
-            name="date"
-            value={formData.date}
-            onChange={handleChange}
-            required
-          />
-          <label htmlFor="res-time">Reserve Time</label>
-          <select
-            id="res-time"
-            name="time"
-            value={formData.time}
-            onChange={handleChange}
-            required
-          >
-            {availableTimes.map((time, index) => (
-              <option key={index} value={time}>
-                {time}
-              </option>
-            ))}
-          </select>
-          <label htmlFor="guests">Number of guests</label>
-          <input
-            type="number"
-            id="guests"
-            name="guests"
-            min="1"
-            max="10"
-            value={formData.guests}
-            onChange={handleChange}
-            required
-          />
-          <label htmlFor="occasion">Occasion</label>
-          <select
-            id="occasion"
-            name="occasion"
-            value={formData.occasion}
-            onChange={handleChange}
-            required
-          >
-            <option value="Birthday">Birthday</option>
-            <option value="Anniversary">Anniversary</option>
-          </select>
-          <button type="submit">Make Reservation</button>
-        </fieldset>
-      </form>
-    </section>
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label>Name:</label>
+        <input
+          type="text"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          required // HTML5 required attribute
+        />
+      </div>
+      <div>
+        <label>Email:</label>
+        <input
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          required // HTML5 required attribute
+        />
+      </div>
+      <div>
+        <label>Party Size:</label>
+        <input
+          type="number"
+          name="partySize"
+          value={formData.partySize}
+          onChange={handleChange}
+          required // HTML5 required attribute
+          min="1" // Minimum party size
+        />
+      </div>
+      <div>
+        <label>Date:</label>
+        <input
+          type="date"
+          name="selectedDate"
+          value={formData.selectedDate}
+          onChange={handleChange}
+          required // HTML5 required attribute
+        />
+      </div>
+      <div>
+        <label>Time:</label>
+        <select
+          name="selectedTime"
+          value={formData.selectedTime}
+          onChange={handleChange}
+          required // HTML5 required attribute
+        >
+          <option value="">Select Time</option>
+          {availableTimes.map((time) => (
+            <option key={time} value={time}>
+              {time}
+            </option>
+          ))}
+        </select>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
   );
 };
 

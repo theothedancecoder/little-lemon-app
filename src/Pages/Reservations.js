@@ -2,6 +2,7 @@
 import React, { useReducer, useEffect } from "react";
 
 import { initializeTimes, updateTimes } from "../timesReducer";
+import BookingForm from "../Components/BookingForm";
 
 const Reservations = () => {
   const [availableTimes, dispatch] = useReducer(
