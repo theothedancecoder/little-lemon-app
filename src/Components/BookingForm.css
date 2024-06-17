@@ -1,0 +1,42 @@
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+}
+
+.booking-form {
+  display: grid;
+  max-width: 400px;
+  gap: 20px;
+  padding: 30px;
+  margin-top: -350px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.legend {
+  font-size: 16px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+button[type="submit"] {
+  padding: 15px;
+}
+button [type="submit"]:hover {
+  background-color: aqua;
+}
